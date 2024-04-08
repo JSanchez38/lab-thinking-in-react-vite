@@ -1,10 +1,16 @@
 
  
- function SearchBar() {
+ function SearchBar({ onSearch }) {
+
+  const handleChange = (changeEvent) => {
+    const {event} = changeEvent.currentTarget
+    onSearch(event)
+  }
+
    return (
       <form>
         <div className="container">
-          <input type="text" class="form-control" placeholder="Search"></input>
+          <input type="text" class="form-control" placeholder="Search" onChange={handleChange}></input>
         </div>
         
         <div>
@@ -14,6 +20,11 @@
 
       </form>
    )
+ }
+
+ SearchBar.defaultProps = {
+  product: '',
+  onSearch:() => {}
  }
  
  export default SearchBar
